@@ -1,0 +1,13 @@
+#!/bin/bash
+# Correct way to chnage MAC on NIC and refresh IPaddress Also
+clear
+
+sudo ip link set eth0 down && sudo macchanger -a eth0 &&
+
+sudo ip link set eth0 up && sudo dhclient eth0 &&
+
+sleep 3
+
+ip a | awk '{print $2}' | grep 192.* | cut -b 1-12 &&
+
+echo "All done !!!"
