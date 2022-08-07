@@ -17,4 +17,4 @@
 
 # sleep 2
 
-# echo "Your Report is Wating For You now just evaluate the report and make something Actionable"
+# echo "Your Report is Wating For You now just evaluate the report and make your Attack"

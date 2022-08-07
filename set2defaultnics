@@ -10,4 +10,4 @@ sleep 3
 
 ip a | awk '{print $2}' | grep 192.* | cut -b 1-12 &&
 
-echo "All Back to Normal!!"
+echo "All Back to Normal!"
