@@ -1,4 +1,4 @@
-# This script those exactly the same as nicrefresher, but skips one step:
+# This script does exactly the same as nicrefresher, but skips one step:
 
 ## First take down the NIC and then we tell macchanger to give it back the permanent MAC of the device, otherwise the NIC may brick itself or just plain start behaving like the MACADDRESS that macchanger assigned it.
 
@@ -12,4 +12,4 @@
 
 * ip a | awk '{print }' | grep 192.* | cut -b 1-12 &&
 
-* echo All Back to Normalgh repo create 
+* echo All Back to Normal
