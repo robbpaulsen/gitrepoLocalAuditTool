@@ -1,0 +1,1 @@
+# Make the script @internalassesment@ more interactive Setup the "nicrefresher" with the "wlaninit" and the "set2defaultnics" script. Erase the "README.md" that explains each block of code and instead comment more the actual code.

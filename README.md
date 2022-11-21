@@ -1,15 +1,14 @@
-# This script does exactly the same as nicrefresher, but skips one step:
+# Practicing Network skills, admin tasks and inspecting the network to achieve better connectivity and deploying projects its very repetitive, this version will be mmore portable by taking into account input from the user, will collect important data and inspect the network for a continuos improvement.
 
-## First take down the NIC and then we tell macchanger to give it back the permanent MAC of the device, otherwise the NIC may brick itself or just plain start behaving like the MACADDRESS that macchanger assigned it.
+# System utilities
 
-* sudo ip link set eth0 down && sudo macchanger -p eth0 &&
+## The sys utils are the base packagaing tools that comes out of the box on all unix like OS's, almost all of the one used in this script come preinstalled on all distros. Only the "arp-scan" util needs to be installed as dependency in case your main driver is an Ubuntu base OS:
 
-## Then just put in back up again
+* nmap
+* arp-scan
+* awk
+* grep
 
-* sudo ip link set eth0 up &&
+# NMAP or the Network Mapper
 
-## And at the end again printing the stdout so that the user may see the change
-
-* ip a | awk '{print }' | grep 192.* | cut -b 1-12 &&
-
-* echo All Back to Normal
+## Nmap is by far the most known Recon/Scanner tool known to all system admins, ethical hackers, pentesters and HomeLab geeks. is an open source tool for network exploration and security auditing.It was designed to rapidly scan large networks, although it works fine against single hosts. Nmap uses raw IP packets in novel ways to determine what hosts are available on the network, what services (application name and version) those hosts are offering, what operating systems (and OS versions) they are running, what type of packet filters/firewalls are in use, and dozens of other characteristics. While Nmap is commonly used for security audits, many systems and network administrators find it useful for routine tasks such as network inventory, managing service upgrade schedules, and monitoring host or service uptime.

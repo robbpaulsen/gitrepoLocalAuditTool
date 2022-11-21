@@ -1,17 +1,41 @@
 #!/bin/bash
-
+#
 clear
-echo "About to perform arp-scan of all network addresses and a Recon for vulnerabilities inside the Network!!"
 
-sleep 3
+# Sudo/Admin permission confiramtion
 
-echo "Performing local Arp-Scan, Detailing the info for no DUPs and Presentable"
+if [[ $EUID -ne 0 ]]
 
+then
+	echo
+	echo "Exiting, Arp-scan and port scanning need to be run as ROOT, try again with sudo"
+	echo
+    sleep 3 &&
+	exit 1
+fi
+
+echo "Enter the network range to begin Arp-Scan" LNET
+read $LNET
 sleep 2
+clear
+echo
+echo "Recon Started"
 
-sudo arp-scan -l -v | awk '{print $1}' | grep 192.* |  sort | uniq  > addressestoscan.json && sudo nmap -sS -sC -sV -O -p- -D 1.1.1.1,8.8.8.8 -iL addressestoscan.json -oX LocalNetReport
+# variables
+ASCAN=$(arp-scan -l -v | awk '{print $1}' | grep $LNET* | sort | uniq  > ipaddres)
+ipaddres=$IPADD
+
+nmap -sS -sC -sV -O -p- -D 1.1.1.1,8.8.8.8 -iL $IPADD -oX NetReport
+NetReport=$RSLTS
 
-sleep 2
+mkdir -p $PWD/NetworkReport
+mv NetReport $PWD/NetworkReport/
+clear
+echo "The Results Report will be on NetworkReport directory"
+echo
+echo
+cat $PWD/NetworkReport/$RSLTS
 
-echo "Your Report is Wating For You now just evaluate the report and make something Actionable"
+
+#sudo arp-scan -l -v | awk '{print $1}' | grep 192.* |  sort | uniq  > addressestoscan.json && sudo nmap -sS -sC -sV -O -p- -D 1.1.1.1,8.8.8.8 -iL addressestoscan.json -oX LocalNetReport
 
