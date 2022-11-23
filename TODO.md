@@ -1,1 +1,7 @@
-# Make the script @internalassesment@ more interactive Setup the "nicrefresher" with the "wlaninit" and the "set2defaultnics" script. Erase the "README.md" that explains each block of code and instead comment more the actual code.
+### Modified README.md , substituted arp-scan utility with arp and took out grep command since arp already displays addresses in 1 erdered column.
+#
+#
+### Changed the objective of repo, originally made to create a cronjob, new objective is to only automate the first recon on any scenario.
+#
+#
+### Next steps to apply variables and ask more user input.

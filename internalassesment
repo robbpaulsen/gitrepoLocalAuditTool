@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 #
 clear
 
@@ -14,28 +14,13 @@ then
 	exit 1
 fi
 
-echo "Enter the network range to begin Arp-Scan" LNET
-read $LNET
-sleep 2
+arp | awk {'print $1'} | sort | uniq >> temp_ips.xml | cat temp_ips.xml | sort | uniq >> uniq_ips.xml &&
+    nmap -sC -sV -O -p- -D 1.1.1.1,8.8.8.8 -iL uniq_ips.xml -oX ./NetworkReport &&
+    sleep 2
+
+xdg-open NetworkReport*
+
 clear
-echo
-echo "Recon Started"
-
-# variables
-ASCAN=$(arp-scan -l -v | awk '{print $1}' | grep $LNET* | sort | uniq  > ipaddres)
-ipaddres=$IPADD
-
-nmap -sS -sC -sV -O -p- -D 1.1.1.1,8.8.8.8 -iL $IPADD -oX NetReport
-NetReport=$RSLTS
-
-mkdir -p $PWD/NetworkReport
-mv NetReport $PWD/NetworkReport/
-clear
-echo "The Results Report will be on NetworkReport directory"
-echo
-echo
-cat $PWD/NetworkReport/$RSLTS
-
+echo "Here's your Report and details about every Device"
 
 #sudo arp-scan -l -v | awk '{print $1}' | grep 192.* |  sort | uniq  > addressestoscan.json && sudo nmap -sS -sC -sV -O -p- -D 1.1.1.1,8.8.8.8 -iL addressestoscan.json -oX LocalNetReport
-
