@@ -15,7 +15,7 @@ then
 fi
 
 arp | awk {'print $1'} | sort | uniq >> temp_ips.xml | cat temp_ips.xml | sort | uniq >> uniq_ips.xml &&
-    nmap -sC -sV -O -p- -D 1.1.1.1,8.8.8.8 -iL uniq_ips.xml -oX ./NetworkReport &&
+    nmap -sC -sV -O -p- -D 1.1.1.1,8.8.8.8 -iL uniq_ips.xml -oX NetworkReport &&
     sleep 2
 
 xdg-open NetworkReport*
